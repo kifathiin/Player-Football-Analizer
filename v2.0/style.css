@@ -1,0 +1,995 @@
+/* ==========================================
+   GLOBAL
+   ========================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #0d0f12;
+
+    color: #ffffff;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.header {
+
+    text-align: center;
+
+    padding: 55px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #171a20,
+            #242932
+        );
+
+    border-bottom:
+        1px solid #343943;
+
+}
+
+
+.header h1 {
+
+    font-size: 42px;
+
+    margin: 8px 0;
+
+}
+
+
+.version {
+
+    color: #8e949d;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+}
+
+
+.subtitle {
+
+    color: #aeb3bb;
+
+    margin-bottom: 15px;
+
+}
+
+
+.version-badge {
+
+    display: inline-block;
+
+    padding:
+        5px
+        12px;
+
+    border:
+        1px solid #555b65;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #cfd2d7;
+
+}
+
+
+/* ==========================================
+   CONTAINER
+   ========================================== */
+
+.container {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: auto;
+
+    padding:
+        35px
+        20px;
+
+}
+
+
+/* ==========================================
+   CARD
+   ========================================== */
+
+.card {
+
+    background: #17191e;
+
+    border:
+        1px solid #2b3038;
+
+    border-radius: 16px;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.2);
+
+}
+
+
+/* ==========================================
+   SECTION TITLE
+   ========================================== */
+
+.section-title {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.section-title > span {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 8px;
+
+    background: #292e36;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+.section-title h2 {
+
+    font-size: 22px;
+
+}
+
+
+.section-title p {
+
+    color: #858b94;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================
+   FORM
+   ========================================== */
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.input-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+.input-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+}
+
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 13px;
+
+    background: #0e1013;
+
+    color: #ffffff;
+
+    border:
+        1px solid #363c45;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+
+}
+
+
+input:focus,
+select:focus {
+
+    outline: none;
+
+    border-color: #ffffff;
+
+}
+
+
+.input-with-unit {
+
+    position: relative;
+
+}
+
+
+.input-with-unit input {
+
+    padding-right: 45px;
+
+}
+
+
+.input-with-unit span {
+
+    position: absolute;
+
+    right: 14px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color: #777d86;
+
+    font-size: 13px;
+
+}
+
+
+/* ==========================================
+   ATTRIBUTES
+   ========================================== */
+
+.attribute-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.rating {
+
+    padding: 16px;
+
+    background: #101216;
+
+    border:
+        1px solid #272c34;
+
+    border-radius: 10px;
+
+}
+
+
+.rating label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+}
+
+
+.rating input {
+
+    text-align: center;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+
+/* ==========================================
+   ANALYZE BUTTON
+   ========================================== */
+
+.analyze-button {
+
+    width: 100%;
+
+    padding: 18px;
+
+    margin:
+        5px
+        0
+        30px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #0d0f12;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        background 0.2s;
+
+}
+
+
+.analyze-button:hover {
+
+    background: #dcdfe3;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.analyze-button span {
+
+    margin-right: 8px;
+
+}
+
+
+/* ==========================================
+   RESULT
+   ========================================== */
+
+.hidden {
+
+    display: none;
+
+}
+
+
+.result {
+
+    animation:
+        fadeIn 0.5s ease;
+
+}
+
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ==========================================
+   PLAYER CARD
+   ========================================== */
+
+.player-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 30px;
+
+    margin-bottom: 20px;
+
+    border:
+        1px solid #30353e;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d2026,
+            #111317
+        );
+
+}
+
+
+.player-avatar {
+
+    width: 125px;
+
+    height: 125px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #353b45,
+            #17191e
+        );
+
+    border:
+        1px solid #484f5a;
+
+    font-size: 55px;
+
+}
+
+
+.player-card-info {
+
+    flex: 1;
+
+}
+
+
+.result-label {
+
+    color: #7f858e;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.player-card-info h2 {
+
+    font-size: 38px;
+
+    margin:
+        4px
+        0;
+
+}
+
+
+#resultInfo {
+
+    color: #999fa8;
+
+}
+
+
+/* ==========================================
+   MAIN ROLE
+   ========================================== */
+
+.main-role {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.main-role > div {
+
+    padding: 22px;
+
+    background: #17191e;
+
+    border:
+        1px solid #2b3038;
+
+    border-radius: 14px;
+
+}
+
+
+.main-role p {
+
+    color: #777e87;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.main-role h3 {
+
+    margin-top: 5px;
+
+    font-size: 23px;
+
+}
+
+
+/* ==========================================
+   RADAR
+   ========================================== */
+
+.radar-container {
+
+    width: 100%;
+
+    max-width: 600px;
+
+    margin:
+        0
+        auto
+        30px;
+
+}
+
+
+.radar-container canvas {
+
+    width: 100% !important;
+
+    max-height: 500px;
+
+}
+
+
+/* ==========================================
+   ATTRIBUTE RESULT
+   ========================================== */
+
+.attribute-result {
+
+    margin-bottom: 17px;
+
+}
+
+
+.attribute-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 6px;
+
+    font-size: 14px;
+
+}
+
+
+.attribute-header strong {
+
+    color: #c7cbd1;
+
+}
+
+
+.bar-background {
+
+    width: 100%;
+
+    height: 9px;
+
+    overflow: hidden;
+
+    background: #30343c;
+
+    border-radius: 10px;
+
+}
+
+
+.bar-fill {
+
+    height: 100%;
+
+    background: #ffffff;
+
+    border-radius: 10px;
+
+    transition:
+        width 0.7s ease;
+
+}
+
+
+/* ==========================================
+   POSITION FIT
+   ========================================== */
+
+.position-item {
+
+    padding: 16px;
+
+    margin-bottom: 12px;
+
+    background: #101216;
+
+    border:
+        1px solid #282d35;
+
+    border-radius: 10px;
+
+    transition:
+        transform 0.2s;
+
+}
+
+
+.position-item:hover {
+
+    transform:
+        translateX(4px);
+
+}
+
+
+.position-item:first-child {
+
+    border-left:
+        4px solid #ffffff;
+
+}
+
+
+.position-name {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+}
+
+
+.position-score {
+
+    color: #aaa;
+
+}
+
+
+/* ==========================================
+   ROLE MODEL
+   ========================================== */
+
+.model-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    background: #101216;
+
+    border:
+        1px solid #292e36;
+
+    border-radius: 12px;
+
+}
+
+
+.model-avatar {
+
+    width: 85px;
+
+    height: 85px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #30353e;
+
+    font-size: 35px;
+
+}
+
+
+.model-info h3 {
+
+    font-size: 21px;
+
+}
+
+
+.similarity {
+
+    color: #a4a9b1;
+
+}
+
+
+.similarity strong {
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+}
+
+
+/* ==========================================
+   STRENGTH
+   ========================================== */
+
+.strength-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.strength-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 15px;
+
+    background: #101216;
+
+    border:
+        1px solid #282d35;
+
+    border-radius: 9px;
+
+}
+
+
+/* ==========================================
+   DEVELOPMENT
+   ========================================== */
+
+.suggestion-list {
+
+    display: grid;
+
+    gap: 10px;
+
+}
+
+
+.suggestion-item {
+
+    padding: 15px;
+
+    background: #101216;
+
+    border-left:
+        3px solid #ffffff;
+
+    border-radius: 8px;
+
+    color: #c5c9cf;
+
+}
+
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+footer {
+
+    text-align: center;
+
+    padding: 35px;
+
+    color: #686e77;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 750px) {
+
+
+    .header h1 {
+
+        font-size: 29px;
+
+    }
+
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .attribute-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .main-role {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .player-card {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+
+    .player-card-info h2 {
+
+        font-size: 30px;
+
+    }
+
+
+    .strength-list {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+}
+
+
+@media (max-width: 450px) {
+
+
+    .container {
+
+        padding:
+            20px
+            12px;
+
+    }
+
+
+    .card {
+
+        padding: 20px;
+
+    }
+
+
+    .attribute-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .player-avatar {
+
+        width: 100px;
+
+        height: 100px;
+
+        font-size: 42px;
+
+    }
+
+}

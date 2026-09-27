@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Football Player Analyzer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zen+Dots&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BACKGROUND GRID -->
+    <div class="background-grid"></div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="brand">
+            <span class="brand-mark"></span>
+            <span>FPA / 02.1</span>
+        </div>
+
+        <div class="header-status">
+            PERSONAL FOOTBALL ANALYSIS
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero reveal">
+
+            <div class="hero-grid">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        FOOTBALL PLAYER ANALYZER
+                    </div>
+
+                    <h1>
+                        UNDERSTAND<br>
+                        <span>YOUR GAME.</span>
+                    </h1>
+
+                    <p>
+                        Analisis atribut, posisi, gaya bermain,
+                        dan identitas sepak bolamu berdasarkan
+                        profil permainanmu sendiri.
+                    </p>
+
+                    <button class="hero-button" onclick="scrollToAnalyzer()">
+                        START ANALYSIS
+                        <span>↗</span>
+                    </button>
+
+                </div>
+
+
+                <!-- VISUAL TRACKING FRAME -->
+                <div class="hero-visual">
+
+                    <div class="tracking-frame">
+
+                        <div class="frame-label top-left">
+                            PLAYER / 01
+                        </div>
+
+                        <div class="frame-label bottom-right">
+                            LIVE PROFILE
+                        </div>
+
+                        <div class="pitch-lines">
+
+                            <div class="pitch-circle"></div>
+
+                            <div class="tracking-line line-one"></div>
+                            <div class="tracking-line line-two"></div>
+
+                            <div class="player-point point-one"></div>
+                            <div class="player-point point-two"></div>
+                            <div class="player-point point-three"></div>
+
+                        </div>
+
+                        <div class="frame-number">
+                            90
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYZER -->
+        <section id="analyzer" class="analyzer-section reveal">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-index">01</span>
+                    <h2>PLAYER IDENTITY</h2>
+                </div>
+
+                <p>
+                    Basic information about your playing profile.
+                </p>
+            </div>
+
+
+            <div class="identity-panel">
+
+                <div class="identity-main">
+
+                    <label>
+                        PLAYER NAME
+
+                        <input
+                            type="text"
+                            id="playerName"
+                            placeholder="Your name"
+                        >
+                    </label>
+
+                </div>
+
+
+                <div class="identity-small">
+
+                    <label>
+                        HEIGHT
+
+                        <div class="input-unit">
+                            <input
+                                type="number"
+                                id="height"
+                                placeholder="170"
+                            >
+                            <span>CM</span>
+                        </div>
+
+                    </label>
+
+
+                    <label>
+                        DOMINANT FOOT
+
+                        <select id="foot">
+                            <option value="Right">Right</option>
+                            <option value="Left">Left</option>
+                            <option value="Both">Both</option>
+                        </select>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- ATTRIBUTES -->
+            <div class="section-heading section-space">
+                <div>
+                    <span class="section-index">02</span>
+                    <h2>PERFORMANCE MATRIX</h2>
+                </div>
+
+                <p>
+                    Rate yourself from 1 to 5 based on your current ability.
+                </p>
+            </div>
+
+
+            <div class="performance-grid">
+
+                <!-- PHYSICAL -->
+                <div class="matrix-block">
+
+                    <div class="matrix-header">
+                        <span>01</span>
+                        <h3>PHYSICAL</h3>
+                    </div>
+
+                    <div class="attribute-input" data-label="Kecepatan">
+                        <div>
+                            <span>01</span>
+                            <label>KECEPATAN</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="speed"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                    <div class="attribute-input" data-label="Stamina">
+                        <div>
+                            <span>02</span>
+                            <label>STAMINA</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="stamina"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                    <div class="attribute-input" data-label="Kekuatan">
+                        <div>
+                            <span>03</span>
+                            <label>KEKUATAN</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="strength"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                </div>
+
+
+                <!-- TECHNICAL -->
+                <div class="matrix-block">
+
+                    <div class="matrix-header">
+                        <span>02</span>
+                        <h3>TECHNICAL</h3>
+                    </div>
+
+                    <div class="attribute-input">
+                        <div>
+                            <span>04</span>
+                            <label>KONTROL BOLA</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="ballControl"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                    <div class="attribute-input">
+                        <div>
+                            <span>05</span>
+                            <label>UMPAN</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="passing"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                    <div class="attribute-input">
+                        <div>
+                            <span>06</span>
+                            <label>DRIBBLING</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="dribbling"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                    <div class="attribute-input">
+                        <div>
+                            <span>07</span>
+                            <label>TEMBAKAN</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="shooting"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                    <div class="attribute-input">
+                        <div>
+                            <span>08</span>
+                            <label>PENYELESAIAN</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="finishing"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                </div>
+
+
+                <!-- MENTAL -->
+                <div class="matrix-block">
+
+                    <div class="matrix-header">
+                        <span>03</span>
+                        <h3>MENTAL</h3>
+                    </div>
+
+                    <div class="attribute-input">
+                        <div>
+                            <span>09</span>
+                            <label>BERTAHAN</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="defending"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                    <div class="attribute-input">
+                        <div>
+                            <span>10</span>
+                            <label>MELIHAT RUANG</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="vision"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                    <div class="attribute-input">
+                        <div>
+                            <span>11</span>
+                            <label>KEPUTUSAN</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="decision"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                    <div class="attribute-input">
+                        <div>
+                            <span>12</span>
+                            <label>GERAKAN</label>
+                        </div>
+
+                        <input
+                            type="number"
+                            id="movement"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLAYING STYLE -->
+            <div class="section-heading section-space">
+                <div>
+                    <span class="section-index">03</span>
+                    <h2>PLAYING STYLE</h2>
+                </div>
+
+                <p>
+                    Describe how you usually approach the game.
+                </p>
+            </div>
+
+
+            <div class="style-grid">
+
+                <div class="style-group">
+
+                    <span class="style-title">ATTACK</span>
+
+                    <select id="attackHabit">
+                        <option value="passing">Passing & Build-up</option>
+                        <option value="carry">Carry the Ball</option>
+                        <option value="findSpace">Find Space</option>
+                        <option value="dribble">Dribble</option>
+                        <option value="shoot">Shoot</option>
+                    </select>
+
+                </div>
+
+
+                <div class="style-group">
+
+                    <span class="style-title">DEFENSE</span>
+
+                    <select id="defendingHabit">
+                        <option value="press">Press</option>
+                        <option value="return">Return & Cover</option>
+                        <option value="passingLane">Block Passing Lane</option>
+                        <option value="ballCarrier">Stop Ball Carrier</option>
+                    </select>
+
+                </div>
+
+
+                <div class="style-group">
+
+                    <span class="style-title">OVERALL STYLE</span>
+
+                    <select id="style">
+                        <option value="control">Control</option>
+                        <option value="defense">Defensive</option>
+                        <option value="build">Build-up</option>
+                        <option value="wing">Wide Play</option>
+                        <option value="box">Box Presence</option>
+                        <option value="last">Last Line</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button class="analyze-button" onclick="analyzePlayer()">
+                <span>ANALYZE MY GAME</span>
+                <span class="button-arrow">↗</span>
+            </button>
+
+        </section>
+
+
+        <!-- RESULTS -->
+        <section id="result" class="results-section">
+
+            <!-- PLAYER PROFILE -->
+            <div class="section-heading reveal">
+                <div>
+                    <span class="section-index">04</span>
+                    <h2>YOUR PROFILE</h2>
+                </div>
+
+                <p>
+                    A visual summary of your football attributes.
+                </p>
+            </div>
+
+
+            <div class="profile-layout reveal">
+
+                <div class="profile-card">
+
+                    <div class="profile-top">
+
+                        <div>
+                            <span class="profile-label">
+                                PLAYER
+                            </span>
+
+                            <h2 id="resultName">
+                                PLAYER
+                            </h2>
+                        </div>
+
+                        <div class="profile-number">
+                            01
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-info">
+                        <span id="resultInfo">
+                            170 CM / RIGHT FOOT
+                        </span>
+                    </div>
+
+
+                    <div class="profile-position">
+
+                        <span>PRIMARY POSITION</span>
+
+                        <strong id="mainPosition">
+                            MIDFIELDER
+                        </strong>
+
+                        <small id="mainRole">
+                            PLAYMAKER
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="radar-panel">
+
+                    <div class="panel-header">
+                        <span>ATTRIBUTE PROFILE</span>
+                        <span>01 / 12</span>
+                    </div>
+
+                    <div class="radar-wrapper">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ATTRIBUTE SUMMARY -->
+            <div class="section-heading section-space reveal">
+
+                <div>
+                    <span class="section-index">05</span>
+                    <h2>ATTRIBUTE PROFILE</h2>
+                </div>
+
+                <p>
+                    Your strongest and weakest areas.
+                </p>
+
+            </div>
+
+
+            <div
+                id="attributeResults"
+                class="attribute-results reveal">
+            </div>
+
+
+            <!-- POSITION FIT -->
+            <div class="section-heading section-space reveal">
+
+                <div>
+                    <span class="section-index">06</span>
+                    <h2>POSITION FIT</h2>
+                </div>
+
+                <p>
+                    Positions generated from your attribute profile.
+                </p>
+
+            </div>
+
+
+            <div
+                id="positionResults"
+                class="position-results reveal">
+            </div>
+
+
+            <!-- FOOTBALL IDENTITY -->
+            <div class="section-heading section-space reveal">
+
+                <div>
+                    <span class="section-index">07</span>
+                    <h2>FOOTBALL IDENTITY</h2>
+                </div>
+
+                <p>
+                    How your current profile tends to influence the game.
+                </p>
+
+            </div>
+
+
+            <div class="identity-result reveal">
+
+                <div class="identity-role">
+
+                    <span>PRIMARY PLAYING IDENTITY</span>
+
+                    <h2 id="identityRole">
+                        CHANCE CREATOR
+                    </h2>
+
+                    <p id="identityDescription">
+                        Your profile suggests a player who likes
+                        to influence the game through space,
+                        passing and decision-making.
+                    </p>
+
+                </div>
+
+
+                <div class="identity-tags" id="identityTags">
+                </div>
+
+            </div>
+
+
+            <!-- ROLE MODEL -->
+            <div class="section-heading section-space reveal">
+
+                <div>
+                    <span class="section-index">08</span>
+                    <h2>ROLE MODEL</h2>
+                </div>
+
+                <p>
+                    A professional player with a similar profile.
+                </p>
+
+            </div>
+
+
+            <div
+                id="roleModel"
+                class="role-model-panel reveal">
+            </div>
+
+
+            <!-- STRENGTHS -->
+            <div class="section-heading section-space reveal">
+
+                <div>
+                    <span class="section-index">09</span>
+                    <h2>YOUR STRENGTHS</h2>
+                </div>
+
+                <p>
+                    The areas that currently stand out most.
+                </p>
+
+            </div>
+
+
+            <div
+                id="strengthResults"
+                class="strength-grid reveal">
+            </div>
+
+
+            <!-- DEVELOPMENT -->
+            <div class="section-heading section-space reveal">
+
+                <div>
+                    <span class="section-index">10</span>
+                    <h2>DEVELOPMENT</h2>
+                </div>
+
+                <p>
+                    Areas worth developing through training.
+                </p>
+
+            </div>
+
+
+            <div
+                id="suggestionResults"
+                class="development-grid reveal">
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div>
+            FOOTBALL PLAYER ANALYZER
+        </div>
+
+        <span>
+            PERSONAL PERFORMANCE LAB / V2.1
+        </span>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
