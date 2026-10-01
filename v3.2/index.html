@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Player Football Analyzer v3.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bgdeco" aria-hidden="true"><svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"><circle class="w" cx="1440" cy="450" r="260"/><line class="w" x1="1440" y1="0" x2="1440" y2="900"/><circle class="dot" cx="1440" cy="450" r="6"/><rect x="-2" y="250" width="220" height="400"/><rect x="-2" y="360" width="90" height="180"/><path d="M218 400a100 100 0 0 1 0 100"/><polygon points="260,780 230,832 170,832 140,780 170,728 230,728"/><polygon points="350,728 320,780 260,780 230,728 260,676 320,676"/><polygon points="170,728 140,780 80,780 50,728 80,676 140,676"/><polygon class="w" points="1180,80 1246.6,128.4 1221.2,206.6 1138.8,206.6 1113.4,128.4"/><path class="w" d="M1180 80V20M1246.6 128.4l55-30M1221.2 206.6l35 48M1138.8 206.6l-35 48M1113.4 128.4l-55-30"/><path d="M120 150Q320 60 520 160T900 100" stroke-dasharray="4 10"/><circle class="dot" cx="120" cy="150" r="5"/><circle class="dot" cx="520" cy="160" r="5"/><circle class="dot" cx="900" cy="100" r="5"/></svg></div>
+
+<header class="top">
+  <a class="brand" href="#/" data-go="home"><i></i>Player Football Analyzer <small>v3.2</small></a>
+  <nav>
+    <a href="#/" data-nav="home">Beranda</a>
+    <a href="#/analisis" data-nav="analisis">Analisis</a>
+    <a href="#/hasil" data-nav="hasil">Hasil</a>
+    <a href="#/riwayat" data-nav="riwayat">Riwayat</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- BERANDA -->
+<section data-view="home">
+  <div class="pitch" aria-hidden="true"><svg viewBox="0 0 1200 760" preserveAspectRatio="xMidYMin slice"><rect x="40" y="40" width="1120" height="680" rx="6"/><line x1="600" y1="40" x2="600" y2="720"/><circle cx="600" cy="380" r="110"/><circle class="dot" cx="600" cy="380" r="5"/><rect x="40" y="210" width="180" height="340"/><rect x="40" y="300" width="70" height="160"/><path d="M220 320a80 80 0 0 1 0 120"/><rect x="980" y="210" width="180" height="340"/><rect x="1090" y="300" width="70" height="160"/><path d="M980 320a80 80 0 0 0 0 120"/><g transform="translate(60,-30)"><circle cx="900" cy="330" r="170"/><polygon points="900,270 957,311.5 935.3,378.5 864.7,378.5 842.9,311.5"/><path d="M900 270V160M957 311.5l104.7-34M935.3 378.5l64.6 89M864.7 378.5l-64.6 89M842.9 311.5l-104.6-34"/></g><path d="M260 580Q400 430 540 510T760 610" stroke-dasharray="6 8"/><circle class="dot" cx="260" cy="580" r="6"/><circle class="dot" cx="540" cy="510" r="6"/><circle class="dot" cx="760" cy="610" r="6"/></svg></div>
+  <div class="hero wrap">
+    <p class="tag">Player Football Analyzer</p>
+    <h1><span>Kenali</span><span class="ol">peran mainmu.</span></h1>
+    <p class="lead">Jawab pertanyaan tentang kemampuan dan kebiasaanmu di lapangan. Hasilnya berupa peran pemain, kecocokan tiap posisi, dan rencana latihan yang bisa langsung dipakai.</p>
+    <div class="row">
+      <button class="btn" data-go="analisis">Mulai analisis</button>
+      <button class="btn ghost" data-scroll="cara">Lihat cara kerjanya</button>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <div class="band"><div class="wrap two">
+    <div>
+      <p class="tag">Tentang website ini</p>
+      <h2>Alat bantu untuk memahami dirimu sendiri di lapangan</h2>
+    </div>
+    <div class="txt">
+      <p>Player Football Analyzer dibuat untuk pemain amatir, pemain sekolah, dan pemain akademi yang ingin tahu di posisi mana kemampuannya paling terpakai. Tidak perlu data pertandingan, cukup penilaian jujur dari dirimu sendiri.</p>
+      <p>Website ini bukan pengganti pelatih atau data pelacakan profesional. Hasilnya adalah gambaran awal yang bisa kamu diskusikan dengan pelatih dan rekan setim.</p>
+    </div>
+  </div></div>
+
+  <div class="wrap" id="cara">
+    <p class="tag">Cara analisis bekerja</p>
+    <h2>Dari jawabanmu menjadi satu peran</h2>
+    <div class="grid3">
+      <article class="card"><span class="n">01</span><h3>Profil dan kemampuan</h3><p>Kamu menilai 15 atribut dari skala 1 sampai 5, dikelompokkan menjadi fisik, teknik, bertahan, dan mental.</p></article>
+      <article class="card"><span class="n">02</span><h3>Kebiasaan bermain</h3><p>Pertanyaan situasi dan skala 0 sampai 10 menangkap apa yang benar-benar kamu lakukan saat bermain, bukan hanya apa yang kamu bisa.</p></article>
+      <article class="card"><span class="n">03</span><h3>Pencocokan peran</h3><p>Setiap peran punya profil ideal. Skor akhir memberi bobot 65 persen ke kemampuan dan 35 persen ke kebiasaan, lalu disesuaikan dengan tinggi badan.</p></article>
+    </div>
+    <p class="note">Kemampuan dihitung dua cara: nilai mutlak dan nilai relatif terhadap rata-ratamu sendiri. Dengan begitu, pemain yang menilai semuanya tinggi tetap mendapat hasil yang membedakan.</p>
+  </div>
+
+  <div class="band"><div class="wrap">
+    <p class="tag">Yang kamu dapatkan</p>
+    <h2>Hasil yang bisa ditindaklanjuti</h2>
+    <div class="grid3">
+      <article class="card"><h3>Profil kemampuan</h3><p>Grafik radar 15 atribut dan rata-rata per kelompok, lengkap dengan kekuatan utama.</p></article>
+      <article class="card"><h3>Peran dan posisi</h3><p>Lima posisi teratas, peran utama, tingkat keyakinan, dan role model dari 75 pemain profesional dengan gaya serupa.</p></article>
+      <article class="card"><h3>Rencana latihan</h3><p>Tiga area yang paling jauh dari profil ideal perannya, masing-masing dengan latihan yang spesifik.</p></article>
+    </div>
+  </div></div>
+
+  <div class="wrap">
+    <p class="tag">Analisis website</p>
+    <h2>Kondisi versi 3.2</h2>
+    <div class="two cols">
+      <div class="card"><h3>Sudah berjalan</h3>
+        <ul>
+          <li>Tombol dan navigasi bekerja tanpa library eksternal, radar digambar sendiri.</li>
+          <li>Analisis memakai dua sumber, kemampuan dan kebiasaan, lalu menunjukkan bila keduanya tidak sejalan.</li>
+          <li>Jawaban tersimpan di browser sehingga tidak hilang saat halaman dimuat ulang.</li>
+          <li>Setiap hasil bisa disimpan ke riwayat, dibuka lagi, dan dilihat perkembangannya lewat grafik.</li>
+          <li>Riwayat bisa diekspor ke file dan diimpor kembali di perangkat lain.</li>
+        </ul></div>
+      <div class="card"><h3>Masih terbatas</h3>
+        <ul>
+          <li>Semua input adalah penilaian diri, jadi hasilnya bisa bias.</li>
+          <li>Bobot peran disusun berdasarkan pemahaman umum, belum divalidasi dengan data.</li>
+          <li>Pindah perangkat masih manual lewat file riwayat. Belum ada akun atau perbandingan antar pemain.</li>
+        </ul></div>
+    </div>
+  </div>
+
+  <div class="band"><div class="wrap">
+    <p class="tag">Saran pengembangan</p>
+    <h2>Arah berikutnya</h2>
+    <ol class="road">
+      <li><b>Versi 3.3</b><span>Perbandingan dua hasil pada tanggal berbeda, atribut demi atribut, lengkap dengan selisih nilainya.</span></li>
+      <li><b>Versi 3.5</b><span>Mode penilaian oleh pelatih atau rekan setim untuk menyeimbangkan bias penilaian diri.</span></li>
+      <li><b>Versi 4.0</b><span>Akun pengguna, penyimpanan di server, dan ringkasan hasil dalam bahasa yang lebih personal.</span></li>
+      <li><b>Jangka panjang</b><span>Modul belajar analisis sepak bola, impor statistik pertandingan, dan fitur berbayar untuk laporan yang lebih rinci.</span></li>
+    </ol>
+  </div></div>
+</section>
+
+<!-- ANALISIS -->
+<section data-view="analisis" hidden>
+  <div class="wrap narrow">
+    <p class="tag">Analisis</p>
+    <h2 id="stepTitle"></h2>
+    <div class="bar"><div id="bar"></div></div>
+    <p class="hint" id="stepHint"></p>
+    <div id="stepBody"></div>
+    <p class="err" id="err" role="alert"></p>
+    <div class="row between">
+      <button class="btn ghost" id="prev">Kembali</button>
+      <button class="btn" id="next">Lanjut</button>
+    </div>
+  </div>
+</section>
+
+<!-- RIWAYAT -->
+<section data-view="riwayat" hidden>
+  <div class="wrap" id="historyBody"></div>
+</section>
+
+<!-- HASIL -->
+<section data-view="hasil" hidden>
+  <div class="wrap" id="resultBody"></div>
+</section>
+
+</main>
+
+<footer><div class="wrap">Player Football Analyzer v3.2. Hasil berdasarkan penilaian diri dan bersifat perkiraan awal.</div></footer>
+
+<script src="script.js"></script>
+</body>
+</html>
