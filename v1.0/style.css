@@ -1,0 +1,309 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: #101216;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+
+.header {
+    background: linear-gradient(135deg, #16191f, #242a33);
+    padding: 50px 20px;
+    text-align: center;
+    border-bottom: 2px solid #333942;
+}
+
+
+.header h1 {
+    font-size: 32px;
+    margin: 8px 0;
+}
+
+
+.version {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: #aaa;
+}
+
+
+.subtitle {
+    color: #b8bcc4;
+}
+
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+
+.card {
+    background: #191c22;
+    border: 1px solid #2c3139;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+.card h2 {
+    margin-bottom: 20px;
+}
+
+
+.description {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+
+.input-group label,
+.rating label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #3a404a;
+    background: #101216;
+    color: white;
+    font-size: 15px;
+}
+
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #ffffff;
+}
+
+
+.attribute-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+
+.rating {
+    background: #111419;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+.analyze-button {
+    width: 100%;
+    padding: 17px;
+    border: none;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #101216;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+
+.analyze-button:hover {
+    background: #dcdcdc;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+.result-card {
+    text-align: center;
+}
+
+
+.result-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #999;
+}
+
+
+.result-card h2 {
+    font-size: 36px;
+    margin: 5px 0;
+}
+
+
+#resultInfo {
+    color: #aaa;
+}
+
+
+.main-role {
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 12px;
+    background: #101216;
+}
+
+
+.main-role p {
+    color: #999;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+
+.main-role h3 {
+    font-size: 25px;
+    margin: 5px 0 20px;
+}
+
+
+.attribute-result {
+    margin-bottom: 18px;
+}
+
+
+.attribute-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+
+.bar-background {
+    height: 10px;
+    background: #30343c;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.bar-fill {
+    height: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+
+.position-item {
+    background: #111419;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+
+.position-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.position-score {
+    color: #aaa;
+}
+
+
+.model-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #111419;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+
+.model-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #30343c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+
+.model-info h3 {
+    margin-bottom: 5px;
+}
+
+
+.similarity {
+    color: #aaa;
+}
+
+
+.strength-list,
+.suggestion-list {
+    display: grid;
+    gap: 10px;
+}
+
+
+.strength-item,
+.suggestion-item {
+    padding: 15px;
+    background: #111419;
+    border-radius: 10px;
+}
+
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+    font-size: 13px;
+}
+
+
+@media (max-width: 700px) {
+
+    .form-grid,
+    .attribute-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+
+    .result-card h2 {
+        font-size: 28px;
+    }
+
+}

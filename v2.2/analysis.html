@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analyze Your Game | FPA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="page-grid"></div>
+
+    <header class="site-header">
+
+        <a href="index.html" class="brand">
+            <span class="brand-mark"></span>
+            <span>FPA / 02.2</span>
+        </a>
+
+        <div class="header-label">
+            ANALYSIS WORKSPACE
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="analysis-header section-pad">
+
+            <div class="hero-meta">
+                <span>PLAYER ANALYSIS</span>
+                <span>02 / 06</span>
+            </div>
+
+            <h1>
+                BUILD YOUR
+                <span>PLAYER PROFILE.</span>
+            </h1>
+
+            <p>
+                Enter your current attributes as honestly as possible.
+                The quality of the result depends on the quality of
+                the profile you provide.
+            </p>
+
+        </section>
+
+
+        <form id="analysisForm">
+
+
+            <!-- PLAYER IDENTITY -->
+            <section class="form-section section-pad">
+
+                <div class="section-index">
+                    <span>01</span>
+                    <span>PLAYER IDENTITY</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="input-group full">
+                        <label for="playerName">PLAYER NAME</label>
+
+                        <input
+                            type="text"
+                            id="playerName"
+                            placeholder="Enter your name"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="height">HEIGHT</label>
+
+                        <input
+                            type="number"
+                            id="height"
+                            placeholder="e.g. 170"
+                            min="130"
+                            max="230"
+                            required
+                        >
+
+                        <span class="input-unit">CM</span>
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="foot">DOMINANT FOOT</label>
+
+                        <select id="foot">
+                            <option value="Right">Right</option>
+                            <option value="Left">Left</option>
+                            <option value="Both">Both</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ATTRIBUTES -->
+            <section class="form-section section-pad">
+
+                <div class="section-index">
+                    <span>02</span>
+                    <span>PERFORMANCE MATRIX</span>
+                </div>
+
+                <p class="form-note">
+                    Rate yourself from 1 to 5 based on your current
+                    playing ability.
+                </p>
+
+
+                <div class="attribute-section">
+
+                    <div class="attribute-category">
+                        <span>PHYSICAL</span>
+                    </div>
+
+                    <div class="attribute-grid">
+
+                        <div class="rating-control">
+                            <label>Speed</label>
+
+                            <input
+                                type="range"
+                                id="speed"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="speedValue">3</output>
+                        </div>
+
+
+                        <div class="rating-control">
+                            <label>Stamina</label>
+
+                            <input
+                                type="range"
+                                id="stamina"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="staminaValue">3</output>
+                        </div>
+
+
+                        <div class="rating-control">
+                            <label>Strength</label>
+
+                            <input
+                                type="range"
+                                id="strength"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="strengthValue">3</output>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="attribute-section">
+
+                    <div class="attribute-category">
+                        <span>TECHNICAL</span>
+                    </div>
+
+                    <div class="attribute-grid">
+
+                        <div class="rating-control">
+                            <label>Ball Control</label>
+
+                            <input
+                                type="range"
+                                id="ballControl"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="ballControlValue">3</output>
+                        </div>
+
+
+                        <div class="rating-control">
+                            <label>Passing</label>
+
+                            <input
+                                type="range"
+                                id="passing"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="passingValue">3</output>
+                        </div>
+
+
+                        <div class="rating-control">
+                            <label>Dribbling</label>
+
+                            <input
+                                type="range"
+                                id="dribbling"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="dribblingValue">3</output>
+                        </div>
+
+
+                        <div class="rating-control">
+                            <label>Shooting</label>
+
+                            <input
+                                type="range"
+                                id="shooting"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="shootingValue">3</output>
+                        </div>
+
+
+                        <div class="rating-control">
+                            <label>Finishing</label>
+
+                            <input
+                                type="range"
+                                id="finishing"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="finishingValue">3</output>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="attribute-section">
+
+                    <div class="attribute-category">
+                        <span>GAME INTELLIGENCE</span>
+                    </div>
+
+                    <div class="attribute-grid">
+
+                        <div class="rating-control">
+                            <label>Defending</label>
+
+                            <input
+                                type="range"
+                                id="defending"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="defendingValue">3</output>
+                        </div>
+
+
+                        <div class="rating-control">
+                            <label>Vision</label>
+
+                            <input
+                                type="range"
+                                id="vision"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="visionValue">3</output>
+                        </div>
+
+
+                        <div class="rating-control">
+                            <label>Decision Making</label>
+
+                            <input
+                                type="range"
+                                id="decision"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="decisionValue">3</output>
+                        </div>
+
+
+                        <div class="rating-control">
+                            <label>Movement</label>
+
+                            <input
+                                type="range"
+                                id="movement"
+                                min="1"
+                                max="5"
+                                value="3"
+                            >
+
+                            <output id="movementValue">3</output>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PLAYING STYLE -->
+            <section class="form-section section-pad">
+
+                <div class="section-index">
+                    <span>03</span>
+                    <span>PLAYING STYLE</span>
+                </div>
+
+
+                <div class="style-grid">
+
+                    <div class="style-group">
+
+                        <label>ATTACKING HABIT</label>
+
+                        <select id="attackHabit">
+
+                            <option value="passing">
+                                Build-up & Passing
+                            </option>
+
+                            <option value="carry">
+                                Carry the Ball
+                            </option>
+
+                            <option value="findSpace">
+                                Find Space
+                            </option>
+
+                            <option value="dribble">
+                                Take On Defenders
+                            </option>
+
+                            <option value="shoot">
+                                Attack the Goal
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="style-group">
+
+                        <label>DEFENSIVE HABIT</label>
+
+                        <select id="defendingHabit">
+
+                            <option value="press">
+                                Press Aggressively
+                            </option>
+
+                            <option value="return">
+                                Track Back
+                            </option>
+
+                            <option value="passingLane">
+                                Block Passing Lanes
+                            </option>
+
+                            <option value="ballCarrier">
+                                Attack the Ball Carrier
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="style-group">
+
+                        <label>OVERALL STYLE</label>
+
+                        <select id="style">
+
+                            <option value="control">
+                                Control the Game
+                            </option>
+
+                            <option value="defense">
+                                Defensive Stability
+                            </option>
+
+                            <option value="build">
+                                Build From Deep
+                            </option>
+
+                            <option value="wing">
+                                Attack From Wide Areas
+                            </option>
+
+                            <option value="box">
+                                Attack the Box
+                            </option>
+
+                            <option value="last">
+                                Protect the Last Line
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SUBMIT -->
+            <section class="analysis-submit section-pad">
+
+                <div class="submit-information">
+
+                    <span>04</span>
+
+                    <p>
+                        Your profile is ready.
+                        Run the analysis to discover
+                        your football identity.
+                    </p>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="primary-button analyze-button"
+                >
+                    <span>ANALYZE MY GAME</span>
+                    <span class="button-arrow">↗</span>
+                </button>
+
+            </section>
+
+        </form>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div>FOOTBALL PLAYER ANALYZER</div>
+
+        <div>ANALYSIS WORKSPACE</div>
+
+        <div>FPA / 02.2</div>
+
+    </footer>
+
+
+    <script src="analysis.js"></script>
+
+</body>
+</html>

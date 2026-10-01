@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Football Player Analyzer v1.0</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div>
+            <p class="version">VERSION 1.0</p>
+            <h1>⚽ FOOTBALL PLAYER ANALYZER</h1>
+            <p class="subtitle">
+                Analisis gaya bermain dan posisi pemain berdasarkan atribut.
+            </p>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- ========================= -->
+        <!-- DATA PEMAIN -->
+        <!-- ========================= -->
+
+        <section class="card">
+
+            <h2>👤 Data Pemain</h2>
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label for="playerName">Nama Pemain</label>
+                    <input
+                        type="text"
+                        id="playerName"
+                        placeholder="Contoh: Kifathiin"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="height">Tinggi Badan (cm)</label>
+                    <input
+                        type="number"
+                        id="height"
+                        placeholder="Contoh: 170"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="foot">Kaki Dominan</label>
+
+                    <select id="foot">
+                        <option value="Kanan">Kanan</option>
+                        <option value="Kiri">Kiri</option>
+                        <option value="Keduanya">Keduanya</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- ATRIBUT PEMAIN -->
+        <!-- ========================= -->
+
+        <section class="card">
+
+            <h2>📊 Atribut Pemain</h2>
+
+            <p class="description">
+                Berikan nilai dari 1 sampai 5 untuk setiap atribut.
+            </p>
+
+
+            <div class="attribute-grid">
+
+                <div class="rating">
+                    <label>Kecepatan</label>
+                    <input type="number" id="speed" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Stamina</label>
+                    <input type="number" id="stamina" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Kekuatan</label>
+                    <input type="number" id="strength" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Kontrol Bola</label>
+                    <input type="number" id="ballControl" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Umpan</label>
+                    <input type="number" id="passing" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Dribbling</label>
+                    <input type="number" id="dribbling" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Tembakan</label>
+                    <input type="number" id="shooting" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Penyelesaian Peluang</label>
+                    <input type="number" id="finishing" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Kemampuan Bertahan</label>
+                    <input type="number" id="defending" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Melihat Ruang</label>
+                    <input type="number" id="vision" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Pengambilan Keputusan</label>
+                    <input type="number" id="decision" min="1" max="5" value="3">
+                </div>
+
+                <div class="rating">
+                    <label>Gerakan Tanpa Bola</label>
+                    <input type="number" id="movement" min="1" max="5" value="3">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- KEBIASAAN BERMAIN -->
+        <!-- ========================= -->
+
+        <section class="card">
+
+            <h2>🧠 Gaya Bermain</h2>
+
+
+            <div class="input-group">
+
+                <label for="attackHabit">
+                    Saat menyerang, kamu biasanya...
+                </label>
+
+                <select id="attackHabit">
+
+                    <option value="passing">
+                        Cepat mengoper
+                    </option>
+
+                    <option value="carry">
+                        Membawa bola ke depan
+                    </option>
+
+                    <option value="findSpace">
+                        Mencari teman yang kosong
+                    </option>
+
+                    <option value="dribble">
+                        Mencoba melewati lawan
+                    </option>
+
+                    <option value="shoot">
+                        Mencari kesempatan menembak
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="defendingHabit">
+                    Saat bertahan, kamu biasanya...
+                </label>
+
+                <select id="defendingHabit">
+
+                    <option value="press">
+                        Langsung mengejar lawan
+                    </option>
+
+                    <option value="return">
+                        Cepat kembali ke posisi
+                    </option>
+
+                    <option value="passingLane">
+                        Menutup jalur umpan
+                    </option>
+
+                    <option value="ballCarrier">
+                        Mengejar pemain yang membawa bola
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="style">
+                    Gaya permainan yang paling kamu sukai...
+                </label>
+
+                <select id="style">
+
+                    <option value="control">
+                        Mengatur permainan
+                    </option>
+
+                    <option value="defense">
+                        Membantu pertahanan
+                    </option>
+
+                    <option value="build">
+                        Membawa bola dari belakang
+                    </option>
+
+                    <option value="wing">
+                        Menyerang dari sisi lapangan
+                    </option>
+
+                    <option value="box">
+                        Berada dekat kotak penalti
+                    </option>
+
+                    <option value="last">
+                        Menjadi pemain terakhir di belakang
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- BUTTON -->
+        <!-- ========================= -->
+
+        <button class="analyze-button" onclick="analyzePlayer()">
+            ⚡ ANALYZE PLAYER
+        </button>
+
+
+        <!-- ========================= -->
+        <!-- HASIL ANALISIS -->
+        <!-- ========================= -->
+
+        <section id="result" class="result hidden">
+
+            <div class="card result-card">
+
+                <p class="result-label">
+                    ANALYSIS RESULT
+                </p>
+
+                <h2 id="resultName">
+                    Player
+                </h2>
+
+                <p id="resultInfo">
+                    -
+                </p>
+
+
+                <div class="main-role">
+
+                    <p>POSISI UTAMA</p>
+
+                    <h3 id="mainPosition">
+                        -
+                    </h3>
+
+                    <p>ROLE</p>
+
+                    <h3 id="mainRole">
+                        -
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- ATRIBUT HASIL -->
+
+            <div class="card">
+
+                <h2>📈 Profil Atribut</h2>
+
+                <div id="attributeResults"></div>
+
+            </div>
+
+
+            <!-- PERINGKAT POSISI -->
+
+            <div class="card">
+
+                <h2>🏆 Peringkat Posisi</h2>
+
+                <div id="positionResults"></div>
+
+            </div>
+
+
+            <!-- ROLE MODEL -->
+
+            <div class="card">
+
+                <h2>⭐ Role Model</h2>
+
+                <div id="roleModel"></div>
+
+            </div>
+
+
+            <!-- KELEBIHAN -->
+
+            <div class="card">
+
+                <h2>💪 Kekuatan Utama</h2>
+
+                <div id="strengthResults"></div>
+
+            </div>
+
+
+            <!-- SARAN -->
+
+            <div class="card">
+
+                <h2>📌 Saran Pengembangan</h2>
+
+                <div id="suggestionResults"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Football Player Analyzer v1.0
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

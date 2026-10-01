@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Your Football Profile | FPA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <div class="page-grid"></div>
+
+
+    <header class="site-header">
+
+        <a href="index.html" class="brand">
+            <span class="brand-mark"></span>
+            <span>FPA / 02.2</span>
+        </a>
+
+        <div class="header-label">
+            PLAYER REPORT
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- RESULT HERO -->
+        <section class="result-hero section-pad">
+
+            <div class="hero-meta">
+
+                <span>
+                    PERSONAL PLAYER REPORT
+                </span>
+
+                <span>
+                    03 / 06
+                </span>
+
+            </div>
+
+
+            <div class="result-intro">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PLAYER PROFILE
+                    </span>
+
+                    <h1 id="resultName">
+                        PLAYER
+                    </h1>
+
+                    <p id="resultInfo">
+                        -
+                    </p>
+
+                </div>
+
+
+                <div class="main-identity">
+
+                    <span class="identity-label">
+                        PRIMARY POSITION
+                    </span>
+
+                    <strong id="mainPosition">
+                        -
+                    </strong>
+
+                    <span id="mainRole">
+                        -
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RADAR -->
+        <section class="result-section section-pad">
+
+            <div class="section-index">
+
+                <span>01</span>
+
+                <span>
+                    ATTRIBUTE PROFILE
+                </span>
+
+            </div>
+
+
+            <div class="radar-layout">
+
+                <div class="radar-container">
+
+                    <canvas id="radarChart"></canvas>
+
+                </div>
+
+
+                <div
+                    id="attributeResults"
+                    class="attribute-results"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- POSITION FIT -->
+        <section class="result-section section-pad">
+
+            <div class="section-index">
+
+                <span>02</span>
+
+                <span>
+                    POSITION FIT
+                </span>
+
+            </div>
+
+
+            <div
+                id="positionResults"
+                class="position-results"
+            ></div>
+
+        </section>
+
+
+        <!-- ROLE MODEL -->
+        <section class="result-section section-pad">
+
+            <div class="section-index">
+
+                <span>03</span>
+
+                <span>
+                    FOOTBALL IDENTITY
+                </span>
+
+            </div>
+
+
+            <div
+                id="roleModel"
+                class="role-model"
+            ></div>
+
+        </section>
+
+
+        <!-- STRENGTHS -->
+        <section class="result-section section-pad">
+
+            <div class="section-index">
+
+                <span>04</span>
+
+                <span>
+                    TOP STRENGTHS
+                </span>
+
+            </div>
+
+
+            <div
+                id="strengthResults"
+                class="strength-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- DEVELOPMENT -->
+        <section class="result-section section-pad">
+
+            <div class="section-index">
+
+                <span>05</span>
+
+                <span>
+                    DEVELOPMENT
+                </span>
+
+            </div>
+
+
+            <div
+                id="suggestionResults"
+                class="development-results"
+            ></div>
+
+        </section>
+
+
+        <!-- ACTION -->
+        <section class="result-actions section-pad">
+
+            <a
+                href="analysis.html"
+                class="secondary-button"
+            >
+                ANALYZE AGAIN
+            </a>
+
+            <a
+                href="index.html"
+                class="secondary-button"
+            >
+                BACK TO HOME
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div>
+            FOOTBALL PLAYER ANALYZER
+        </div>
+
+        <div>
+            PERSONAL PLAYER REPORT
+        </div>
+
+        <div>
+            FPA / 02.2
+        </div>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="result.js"></script>
+
+</body>
+</html>
