@@ -342,13 +342,18 @@ function toast(m) { const t = $("toast"); t.textContent = m; t.classList.add("on
 
 function errText(d, st) {
   const x = String(d && (d.error_code || d.code) || "") + " " + String(d && (d.msg || d.message || d.error_description || d.error) || "");
+  if (st === 404 || /PGRST205|schema cache/i.test(x)) return "Supabase tidak menemukan tabel riwayat (kode 404). Cek dua hal: skrip SQL sudah dijalankan di proyek yang sama dengan alamat di config.js, dan Data API menyertakan schema public.";
+  if (/42501|permission denied|row-level security/i.test(x)) return "Supabase menolak izin penyimpanan. Jalankan ulang bagian izin (GRANT dan POLICY) pada skrip SQL.";
   if (/invalid_credentials|invalid login/i.test(x)) return "Email atau kata sandi salah.";
   if (/email_not_confirmed|not confirmed/i.test(x)) return "Email belum dikonfirmasi. Cek kotak masuk atau folder spam, lalu klik tautan konfirmasinya.";
   if (/already|exists/i.test(x)) return "Email ini sudah terdaftar. Silakan masuk.";
+  if (/PGRST205|schema cache|Could not find the table/i.test(x) || st === 404) return "Tabel penyimpanan belum ditemukan di Supabase (kode 404). Jalankan ulang skrip SQL pembuat tabel riwayat, lalu coba lagi.";
+  if (/42501|permission denied|row-level security/i.test(x) || st === 403) return "Akses ditolak oleh database (kode 403). Pastikan skrip SQL, termasuk bagian izin dan kebijakan RLS, sudah dijalankan.";
   if (/rate|too many|over_/i.test(x) || st === 429) return "Terlalu banyak percobaan. Tunggu beberapa menit lalu coba lagi.";
   if (/email_address_invalid|valid email/i.test(x)) return "Alamat email tidak valid.";
   if (/weak_password|password/i.test(x)) return "Kata sandi terlalu lemah. Pakai minimal 8 karakter.";
-  return "Terjadi masalah (kode " + st + "). Coba lagi sebentar lagi.";
+  const cd = String(d && (d.error_code || d.code) || "");
+  return "Terjadi masalah (kode " + st + (cd ? ", " + cd : "") + "). Coba lagi sebentar lagi.";
 }
 async function refresh() {
   if (!sess || !sess.refresh_token) return false;
