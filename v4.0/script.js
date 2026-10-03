@@ -319,7 +319,15 @@ function renderResult(snap) {
 }
 
 /* ---------- Akun (Supabase) ---------- */
-const CFG = window.PFA_CONFIG || {}, AUTH_ON = !!(CFG.SUPABASE_URL && CFG.SUPABASE_KEY), AK = "pfa_auth";
+const CFG = window.PFA_CONFIG || {}, AK = "pfa_auth", SBKEY = String(CFG.SUPABASE_KEY || "").trim();
+const SB = (() => { try { const u = new URL(String(CFG.SUPABASE_URL || "").trim()); return /(^|\.)supabase\.com$/.test(u.hostname) || !/^https?:$/.test(u.protocol) ? "" : u.origin; } catch (e) { return ""; } })();
+const KEY_SECRET = (() => { if (/^sb_secret_/.test(SBKEY)) return true; try { return JSON.parse(atob(SBKEY.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))).role === "service_role"; } catch (e) { return false; } })();
+const CFG_ERR = !CFG.SUPABASE_URL && !SBKEY ? "Fitur akun belum aktif: isi config.js dengan alamat proyek dan kunci publik Supabase."
+  : !SB ? "Alamat proyek di config.js tidak valid. Pakai Project URL berbentuk https://kode-proyek.supabase.co, bukan alamat dashboard."
+  : !SBKEY ? "Kunci publik di config.js masih kosong."
+  : KEY_SECRET ? "Kunci di config.js adalah kunci rahasia dan tidak boleh dipakai di website. Ganti dengan kunci publik (publishable atau anon), lalu buat ulang kunci rahasia itu di Supabase."
+  : "";
+const AUTH_ON = !CFG_ERR;
 let sess = null, authMode = "", authTab = "masuk", cloud = null, H = [], viewSnap = null, hMsg = "";
 try { sess = JSON.parse(localStorage.getItem(AK) || "null"); } catch (e) {}
 if (!AUTH_ON) sess = null;
@@ -340,15 +348,15 @@ window.addEventListener("load", () => bar.done());
 let tt;
 function toast(m) { const t = $("toast"); t.textContent = m; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 3600); }
 
-function errText(d, st) {
+function errText(d, st, path = "") {
   const x = String(d && (d.error_code || d.code) || "") + " " + String(d && (d.msg || d.message || d.error_description || d.error) || "");
-  if (st === 404 || /PGRST205|schema cache/i.test(x)) return "Supabase tidak menemukan tabel riwayat (kode 404). Cek dua hal: skrip SQL sudah dijalankan di proyek yang sama dengan alamat di config.js, dan Data API menyertakan schema public.";
-  if (/42501|permission denied|row-level security/i.test(x)) return "Supabase menolak izin penyimpanan. Jalankan ulang bagian izin (GRANT dan POLICY) pada skrip SQL.";
-  if (/invalid_credentials|invalid login/i.test(x)) return "Email atau kata sandi salah.";
+  if (st === 404 && path.startsWith("/auth/")) return "Alamat proyek di config.js tampaknya salah (kode 404). Isi SUPABASE_URL dengan Project URL saja, bentuknya https://kode-proyek.supabase.co, tanpa tambahan di belakangnya.";
+  if (st === 404 || /PGRST205|schema cache|Could not find the table/i.test(x)) return "Supabase tidak menemukan tabel riwayat (kode 404). Cek dua hal: skrip SQL sudah dijalankan di proyek yang sama dengan alamat di config.js, dan Data API menyertakan schema public.";
+  if (/42501|permission denied|row-level security/i.test(x) || st === 403) return "Supabase menolak izin penyimpanan (kode 403). Jalankan ulang bagian izin (GRANT dan POLICY) pada skrip SQL.";
+  if (/invalid login|invalid_credentials/i.test(x)) return "Email atau kata sandi salah.";
+  if (/api key|apikey/i.test(x)) return "Kunci di config.js ditolak Supabase. Pastikan memakai kunci publik dari proyek yang sama dengan alamatnya.";
   if (/email_not_confirmed|not confirmed/i.test(x)) return "Email belum dikonfirmasi. Cek kotak masuk atau folder spam, lalu klik tautan konfirmasinya.";
   if (/already|exists/i.test(x)) return "Email ini sudah terdaftar. Silakan masuk.";
-  if (/PGRST205|schema cache|Could not find the table/i.test(x) || st === 404) return "Tabel penyimpanan belum ditemukan di Supabase (kode 404). Jalankan ulang skrip SQL pembuat tabel riwayat, lalu coba lagi.";
-  if (/42501|permission denied|row-level security/i.test(x) || st === 403) return "Akses ditolak oleh database (kode 403). Pastikan skrip SQL, termasuk bagian izin dan kebijakan RLS, sudah dijalankan.";
   if (/rate|too many|over_/i.test(x) || st === 429) return "Terlalu banyak percobaan. Tunggu beberapa menit lalu coba lagi.";
   if (/email_address_invalid|valid email/i.test(x)) return "Alamat email tidak valid.";
   if (/weak_password|password/i.test(x)) return "Kata sandi terlalu lemah. Pakai minimal 8 karakter.";
@@ -358,24 +366,24 @@ function errText(d, st) {
 async function refresh() {
   if (!sess || !sess.refresh_token) return false;
   try {
-    const r = await fetch(CFG.SUPABASE_URL.replace(/\/+$/, "") + "/auth/v1/token?grant_type=refresh_token", {method: "POST", headers: {apikey: CFG.SUPABASE_KEY, "Content-Type": "application/json"}, body: JSON.stringify({refresh_token: sess.refresh_token})});
+    const r = await fetch(SB + "/auth/v1/token?grant_type=refresh_token", {method: "POST", headers: {apikey: SBKEY, "Content-Type": "application/json"}, body: JSON.stringify({refresh_token: sess.refresh_token})});
     if (!r.ok) return false;
     const n = mapSess(await r.json()); if (!n) return false;
     n.email = n.email || sess.email; setSess(n); return true;
   } catch (e) { return false; }
 }
 async function api(path, o = {}) {
-  if (!AUTH_ON) throw {msg: "Fitur akun belum diaktifkan di website ini.", status: 0};
+  if (!AUTH_ON) throw {msg: CFG_ERR || "Fitur akun belum aktif.", status: 0};
   bar.start();
   try {
     if (o.auth && sess && sess.expires_at - 60 < Date.now() / 1000) await refresh();
-    const hd = {apikey: CFG.SUPABASE_KEY, "Content-Type": "application/json", ...(o.auth && sess ? {Authorization: "Bearer " + sess.access_token} : {}), ...(o.h || {})};
+    const hd = {apikey: SBKEY, "Content-Type": "application/json", ...(o.auth && sess ? {Authorization: "Bearer " + sess.access_token} : {}), ...(o.h || {})};
     let r;
-    try { r = await fetch(CFG.SUPABASE_URL.replace(/\/+$/, "") + path, {method: o.method || "GET", headers: hd, body: o.body ? JSON.stringify(o.body) : undefined}); }
+    try { r = await fetch(SB + path, {method: o.method || "GET", headers: hd, body: o.body ? JSON.stringify(o.body) : undefined}); }
     catch (e) { throw {msg: "Tidak bisa terhubung ke server. Periksa koneksi internetmu.", status: 0}; }
     const t = await r.text(); let d = null; try { d = t ? JSON.parse(t) : null; } catch (e) {}
     if (r.status === 401 && o.auth && !o.retry) { if (await refresh()) return api(path, {...o, retry: 1}); setSess(null); updAcc(); }
-    if (!r.ok) throw {msg: errText(d, r.status), status: r.status};
+    if (!r.ok) throw {msg: errText(d, r.status, path), status: r.status};
     return d;
   } finally { bar.done(); }
 }
@@ -419,7 +427,7 @@ function renderAuth() {
   const t = authTab, ttl = {masuk: "Masuk ke akunmu", daftar: "Buat akun baru", lupa: "Atur ulang kata sandi"}[t];
   $("authBody").innerHTML = `<p class="tag">Akun</p><h2>${ttl}</h2>
   <p class="hint">${t === "lupa" ? "Masukkan email akunmu. Kami kirim tautan untuk membuat kata sandi baru." : "Dengan akun, hasil analisismu tersimpan di server dan bisa dibuka dari perangkat mana pun. Hanya kamu yang bisa melihatnya."}</p>
-  ${AUTH_ON ? "" : '<p class="err">Fitur akun belum aktif: isi config.js dengan alamat proyek dan kunci publik Supabase.</p>'}
+  ${AUTH_ON ? "" : '<p class="err">' + esc(CFG_ERR) + '</p>'}
   ${t === "lupa" ? "" : `<div class="tabs"><button type="button" class="${t === "masuk" ? "on" : ""}" data-tab="masuk">Masuk</button><button type="button" class="${t === "daftar" ? "on" : ""}" data-tab="daftar">Daftar</button></div>`}
   <form id="authForm" novalidate>${fld("email", "Email", "email", "email")}${t !== "lupa" ? fld("pw", "Kata sandi", "password", t === "masuk" ? "current-password" : "new-password") : ""}${t === "daftar" ? fld("pw2", "Ulangi kata sandi", "password", "new-password") : ""}
   <button class="btn" type="submit">${{masuk: "Masuk", daftar: "Buat akun", lupa: "Kirim tautan"}[t]}</button></form>
