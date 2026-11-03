@@ -21,6 +21,7 @@ const mapSess = d => d && d.access_token ? {access_token: d.access_token, refres
 
 
 function errText(d, st, path = "") {
+  if (st === 404 && /rpc\/hapus_akun/.test(path)) return "Fitur hapus akun belum diaktifkan di database. Jalankan 03_hapus_akun.sql di Supabase SQL Editor.";
   const x = String(d && (d.error_code || d.code) || "") + " " + String(d && (d.msg || d.message || d.error_description || d.error) || "");
   if (st === 404 && path.startsWith("/auth/")) return "Alamat proyek di config.js tampaknya salah (kode 404). Isi SUPABASE_URL dengan Project URL saja, bentuknya https://kode-proyek.supabase.co, tanpa tambahan di belakangnya.";
   if (st === 404 || /PGRST205|schema cache|Could not find the table/i.test(x)) return "Supabase tidak menemukan tabel riwayat (kode 404). Cek dua hal: skrip SQL sudah dijalankan di proyek yang sama dengan alamat di config.js, dan Data API menyertakan schema public.";
@@ -106,7 +107,7 @@ function renderAuth() {
   ${t === "masuk" ? '<p class="note"><button type="button" class="linkb" data-tab="lupa">Lupa kata sandi?</button></p>' : ""}${t === "lupa" ? '<p class="note"><button type="button" class="linkb" data-tab="masuk">Kembali ke halaman masuk</button></p>' : ""}
   <p class="err" id="authErr" role="alert"></p><p class="ok" id="authOk" role="status"></p>`;
 }
-async function afterAuth(msg) { updAcc(); await loadAll(); toast(msg); go("akun"); }
+async function afterAuth(msg) { updAcc(); await loadAll(); await pullPlan(true); toast(msg); go("akun"); }
 $("authBody").addEventListener("click", e => { const t = e.target.closest("[data-tab]"); if (t) { authTab = t.dataset.tab; renderAuth(); } });
 $("authBody").addEventListener("submit", async e => {
   e.preventDefault();
@@ -125,6 +126,10 @@ $("authBody").addEventListener("submit", async e => {
   } catch (x) { err.textContent = x.msg || "Terjadi masalah. Coba lagi."; }
   btn.disabled = false;
 });
+async function deleteAccount() {
+  await api("/rest/v1/rpc/hapus_akun", {method: "POST", auth: true, body: {}});
+  clearTimeout(pushT); setSess(null); cloud = null; H = loadH();
+}
 async function renderAccount() {
   const b = $("accBody");
   if (authMode === "recovery") {
@@ -132,13 +137,26 @@ async function renderAccount() {
     return;
   }
   b.innerHTML = `<p class="tag">Akun</p><h2>Akun saya</h2><div class="card"><h3>${esc(sess.email || "")}</h3><p id="accInfo">Menghitung hasil tersimpan...</p></div>
-  <div class="row" style="margin-top:24px"><button class="btn" data-go="riwayat">Lihat riwayat</button><button class="btn ghost" id="btnOut">Keluar</button></div>`;
+  <div class="row" style="margin-top:24px"><button class="btn" data-go="riwayat">Lihat riwayat</button><button class="btn ghost" id="btnOut">Keluar</button></div>
+  <div class="card" style="margin-top:40px"><h3>Hapus akun</h3><p>Menghapus akunmu beserta semua hasil analisis dan rencana latihan yang tersimpan di server. Tindakan ini tidak bisa dibatalkan. Data yang ada di browser perangkat ini tidak ikut terhapus.</p>
+  <div class="row" style="margin-top:14px"><button class="btn ghost" id="btnDel" type="button">Hapus akun saya</button></div>
+  <form id="delForm" hidden novalidate style="margin-top:18px"><div class="field"><label for="delConf">Ketik HAPUS untuk memastikan</label><input id="delConf" autocomplete="off"></div><button class="btn" type="submit">Hapus permanen</button></form>
+  <p class="err" id="delErr" role="alert"></p></div>`;
+  $("btnDel").onclick = () => { $("delForm").hidden = false; $("delConf").focus(); };
   $("btnOut").onclick = async () => { await signOut(); updAcc(); toast("Kamu sudah keluar."); go("home"); };
   const n = (await loadAll()).length;
   if ($("accInfo")) $("accInfo").textContent = n ? n + " hasil analisis tersimpan di akun ini." : "Belum ada hasil tersimpan di akun ini.";
 }
 $("accBody").addEventListener("submit", async e => {
   e.preventDefault();
+  if (e.target.id === "delForm") {
+    const de = $("delErr"), btn = e.target.querySelector("button[type=submit]");
+    if (e.target.delConf.value.trim().toUpperCase() !== "HAPUS") { de.textContent = "Ketik kata HAPUS untuk melanjutkan."; return; }
+    de.textContent = ""; btn.disabled = true;
+    try { await deleteAccount(); updAcc(); toast("Akunmu sudah dihapus."); go("home"); }
+    catch (x) { de.textContent = x.msg || "Gagal menghapus akun. Coba lagi."; btn.disabled = false; }
+    return;
+  }
   const f = e.target, err = $("pwErr");
   if (f.pw.value.length < 8) { err.textContent = "Kata sandi minimal 8 karakter."; return; }
   if (f.pw.value !== f.pw2.value) { err.textContent = "Kedua kata sandi harus sama."; return; }

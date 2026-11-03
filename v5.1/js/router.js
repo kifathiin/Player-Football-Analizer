@@ -16,7 +16,7 @@ function route() {
   if (v === "analisis") renderStep();
   if (v === "hasil") renderResult(viewSnap);
   if (v === "riwayat") renderHistory();
-  if (v === "latihan") renderPlan();
+  if (v === "latihan") { renderPlan(); pullPlan(); }
   if (v === "masuk") renderAuth();
   if (v === "akun") renderAccount();
   updAcc(); updLock();
